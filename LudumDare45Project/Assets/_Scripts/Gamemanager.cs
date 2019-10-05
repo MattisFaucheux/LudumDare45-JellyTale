@@ -139,5 +139,6 @@ public class Gamemanager : MonoBehaviour
     void BoulderStart()
     {
         Debug.Log("Boulder rolling");
+        boulderLaunch.Invoke();
     }
 }
