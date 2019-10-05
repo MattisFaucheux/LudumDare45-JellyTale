@@ -51,6 +51,10 @@ public class Gamemanager : MonoBehaviour
                 PlayerDeath();
 
                 break;
+
+            case GameState.End:
+
+                break;
         }
     }
 
@@ -67,8 +71,12 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Manage player death events
+    /// </summary>
     private void PlayerDeath()
     {
         Debug.Log(curState);
+        Destroy(GameObject.FindGameObjectWithTag("Player"), 0.2f);
     }
 }
