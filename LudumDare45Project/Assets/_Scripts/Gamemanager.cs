@@ -32,6 +32,8 @@ public class Gamemanager : MonoBehaviour
         GameOver,
     };
 
+    List<CheckPoint> checkPoints = new List<CheckPoint>();
+
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
 
@@ -44,6 +46,7 @@ public class Gamemanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         curState = GameState.MainMenu;
     }
 
