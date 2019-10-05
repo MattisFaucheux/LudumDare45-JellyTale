@@ -32,8 +32,8 @@ public class Gamemanager : MonoBehaviour
         GameOver,
     };
 
-    
 
+    public UnityEvent boulderLaunch;
     /*public string messageTriggered;
     public string messageSent;
     public string receivedDeathMessage;

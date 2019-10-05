@@ -6,8 +6,11 @@ using UnityEngine.Events;
 public class BoulderStartTrigger : MonoBehaviour
 {
     //Specify message type and if it was triggered
-    public string messageSent;
-    public string receivedEndMessage;
+
+    public UnityEvent boulderStart;
+
+    /*public string messageSent;
+    public string receivedEndMessage;*/
     private bool triggeredOnce = false;
 
     public void OnTriggerEnter(Collider _collider)
@@ -17,7 +20,8 @@ public class BoulderStartTrigger : MonoBehaviour
         {
             triggeredOnce = true;
             //Send message
-            Messenger.Broadcast<GameObject>(messageSent, this.gameObject);
+            //Messenger.Broadcast<GameObject>(messageSent, this.gameObject);
+            boulderStart.Invoke();
         }
     }
 }
