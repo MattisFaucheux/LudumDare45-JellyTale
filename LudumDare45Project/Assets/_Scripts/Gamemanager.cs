@@ -33,6 +33,7 @@ public class Gamemanager : MonoBehaviour
 
     public string messageTriggered;
     public string receivedDeathMessage;
+    public string receivedBoulderStartMessage;
 
     //Store current game state
     private GameState curState;
@@ -45,9 +46,12 @@ public class Gamemanager : MonoBehaviour
     {
         curState = GameState.MainMenu;
 
-        //Setup listeners to enable message reciving
+        //Setup listeners to enable message receiving
         Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
         Messenger.AddListener<GameObject>(receivedDeathMessage, onDeathMessage);
+
+        Messenger.AddListener<GameObject>(messageTriggered, onBoulderStartMessage);
+        Messenger.AddListener<GameObject>(receivedBoulderStartMessage, onBoulderStartMessage);
     }
 
     private void FixedUpdate()
@@ -114,5 +118,18 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log(curState);
         Destroy(GameObject.FindGameObjectWithTag("Player"), 0.2f);
+    }
+
+    /// <summary>
+    /// React to boulder scene start trigger
+    /// </summary>
+    /// <param name="propType"></param>
+    void onBoulderStartMessage(GameObject propType)
+    {
+        Debug.Log("BoulderStart");
+        curState = GameState.Zone2;
+        Debug.Log("Current State = " + curState);
+
+
     }
 }
