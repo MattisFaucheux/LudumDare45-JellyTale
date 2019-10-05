@@ -145,14 +145,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
-  up: 122
-  down: 115
-  left: 113
-  right: 100
   space: 32
-  speed: 0.3
-  jump_speed: 500
-  double_jump_speed: 1
+  sprint: 304
+  dash: 101
+  speed: 10
+  speed_copy: 0
+  sprint_speed: 1.7
+  jump_speed: 600
+  double_jump_speed: 50
+  wall_jump: 0
 --- !u!54 &162675367
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -402,6 +403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Perso_msh
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7f6d1e1b2f67e1d4fbcf78f2c34d923c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7f6d1e1b2f67e1d4fbcf78f2c34d923c,
         type: 3}

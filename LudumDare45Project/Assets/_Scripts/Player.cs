@@ -6,63 +6,85 @@ public class Player : MonoBehaviour
 {
     public Vector3 position;
 
-    public KeyCode up;
-    public KeyCode down;
-    public KeyCode left;
-    public KeyCode right;
     public KeyCode space;
+    public KeyCode sprint;
+    public KeyCode dash;
 
-    public float speed = 0.3f;
-    public float jump_speed = 300f;
-    public float double_jump_speed = 1f;
-    //public float gravity = -1f;
+    public float speed = 10f;
+    public float speed_copy = 0f;
+    public float sprint_speed = 1.7f;
+    public float jump_speed = 600f;
+    public float double_jump_speed = 50f;
+    public float dashX;
+    public float dashY;
+    public float dash_speed = 5f;
+    public float dash_time = 0.2f;
+
+    private float time;
 
     private bool is_jumping = false;
     private bool double_jump = true;
+    private bool is_dash = false;
+
+    public bool wall_jump = false;
+
+    private float LastMooveX;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        speed_copy = speed;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKey(right))
+        time = Time.deltaTime;
+
+        if (Input.GetKey(sprint))
         {
-            transform.position += new Vector3(speed, 0, 0);
+            speed = speed_copy * sprint_speed;
+        }
+        else
+        {
+            speed = speed_copy;
         }
 
-        if (Input.GetKey(left))
+        if (Input.GetKeyDown(dash))
         {
-            transform.position += new Vector3(-speed, 0, 0);
+            is_dash = true;
+            dashX = Input.GetAxis("Horizontal");
+            dashY = Input.GetAxis("Vertical");
+            StartCoroutine(MyDash());
         }
 
-        if (Input.GetKey(up))
+        if (is_dash == true)
         {
-            transform.position += new Vector3(0, 0, speed);
+            transform.Translate(dashX * speed * time * dash_speed, dashY * speed * time * dash_speed, 0);
+        }
+        else
+        {
+            transform.Translate(Input.GetAxis("Horizontal") * time * speed, 0, 0);
+            transform.Translate(0, Input.GetAxis("Vertical") * time * speed, 0);
         }
 
-        if (Input.GetKey(down))
+        if (Input.GetKeyDown(space) && wall_jump == true)
         {
-            transform.position += new Vector3(0, 0, -speed);
+            Debug.Log("test");
         }
-
-        if (Input.GetKeyDown(space) && (is_jumping == false || double_jump == true))
+        else if (Input.GetKeyDown(space) && (is_jumping == false || double_jump == true))
         {
             if (is_jumping == true)
             {
                 double_jump = false;
-                //gravity = -1f;
 
-                //if (GetComponent<Rigidbody>().velocity.y < 0f)
-                //{
-                double_jump_speed = -GetComponent<Rigidbody>().velocity.y*50;
-                //}
+                if (GetComponent<Rigidbody>().velocity.y < 0f)
+                {
+                 double_jump_speed *= -GetComponent<Rigidbody>().velocity.y;
+                }
                 GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed + double_jump_speed, 0));
-
             }
             else
             {
@@ -71,14 +93,6 @@ public class Player : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed, 0));
             }
         }
-
-        //if(is_jumping == true && GetComponent<Rigidbody>().velocity.y <= 2f)
-        //{
-        //    GetComponent<Rigidbody>().AddForce(new Vector3(0, gravity, 0));
-
-        //    gravity -= 1f;
-        //}
-
     }
 
     void OnCollisionEnter(Collision col)
@@ -87,17 +101,31 @@ public class Player : MonoBehaviour
         {
             is_jumping = false;
             double_jump = true;
-            //gravity = -1f;
-            double_jump_speed = 1f;
-}
+            double_jump_speed = 50f;
+        }
+        else if (col.transform.tag == "Wall")
+        {
+            wall_jump = true;
+            Physics.gravity = new Vector3(0, -5, 0);
+            speed = 1;
+        }
     }
 
-    //void OnCollision(Collision col)
-    //{
-    //    if (col.transform.tag == "Wall")
-    //    {
-            
-    //    }
-    //}
+    void OnCollisionExit(Collision col)
+    {
+        if (col.transform.tag == "Wall")
+        {
+            wall_jump = false;
+            Physics.gravity = new Vector3(0, -40, 0);
+            speed = speed_copy;
+        }
+    }
+
+    IEnumerator MyDash()
+    {
+        yield return new WaitForSeconds(dash_time);
+        is_dash = false;
+    }
+
 
 }
