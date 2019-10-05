@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 /*
@@ -32,6 +33,7 @@ public class Gamemanager : MonoBehaviour
     };
 
     public string messageTriggered;
+    public string messageSent;
     public string receivedDeathMessage;
     public string receivedBoulderStartMessage;
 
@@ -50,7 +52,7 @@ public class Gamemanager : MonoBehaviour
         Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
         Messenger.AddListener<GameObject>(receivedDeathMessage, onDeathMessage);
 
-        Messenger.AddListener<GameObject>(messageTriggered, onBoulderStartMessage);
+        Messenger.AddListener<GameObject>(messageSent, onBoulderStartMessage);
         Messenger.AddListener<GameObject>(receivedBoulderStartMessage, onBoulderStartMessage);
     }
 
@@ -68,7 +70,7 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone2:
-
+                BoulderStart();
                 break;
 
             case GameState.Zone3:
@@ -129,7 +131,11 @@ public class Gamemanager : MonoBehaviour
         Debug.Log("BoulderStart");
         curState = GameState.Zone2;
         Debug.Log("Current State = " + curState);
+        
+    }
 
-
+    void BoulderStart()
+    {
+        Debug.Log("Boulder rolling");
     }
 }
