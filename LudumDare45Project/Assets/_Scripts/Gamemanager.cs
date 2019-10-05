@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 /*
@@ -31,8 +32,8 @@ public class Gamemanager : MonoBehaviour
         GameOver,
     };
 
-    public string messageTriggered;
-    public string receivedDeathMessage;
+    //All events triggered by GameManager
+    public UnityEvent boulderLaunch;
 
     //Store current game state
     private GameState curState;
@@ -44,15 +45,11 @@ public class Gamemanager : MonoBehaviour
     void Start()
     {
         curState = GameState.MainMenu;
-
-        //Setup listeners to enable message reciving
-        Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
-        Messenger.AddListener<GameObject>(receivedDeathMessage, onDeathMessage);
     }
 
     private void FixedUpdate()
     {
-        //Check current game state and execute relative methods
+        //Switch between game states and execute relative methods
         switch (curState)
         {
             case GameState.MainMenu:
@@ -64,7 +61,7 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone2:
-
+                BoulderStart();
                 break;
 
             case GameState.Zone3:
@@ -98,7 +95,7 @@ public class Gamemanager : MonoBehaviour
     /// React to player death
     /// </summary>
     /// <param name="propType"></param>
-    void onDeathMessage(GameObject propType)
+    public void onDeathMessage(GameObject propType)
     {
         Debug.Log("PlayerDead");
         curState = GameState.GameOver;
@@ -114,5 +111,26 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log(curState);
         Destroy(GameObject.FindGameObjectWithTag("Player"), 0.2f);
+    }
+
+    /// <summary>
+    /// React to boulder scene start trigger
+    /// </summary>
+    /// <param name="propType"></param>
+    public void onBoulderStartMessage(GameObject propType)
+    {
+        Debug.Log("BoulderStart");
+        curState = GameState.Zone2;
+        Debug.Log("Current State = " + curState);
+        
+    }
+
+    /// <summary>
+    /// Send message to Boulder to enable movement
+    /// </summary>
+    void BoulderStart()
+    {
+        Debug.Log("Boulder rolling");
+        boulderLaunch.Invoke();
     }
 }
