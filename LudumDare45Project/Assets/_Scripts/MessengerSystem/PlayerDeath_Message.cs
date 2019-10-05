@@ -6,8 +6,8 @@ public class PlayerDeath_Message : MonoBehaviour
 {
     //Specify message type and if it was triggered
     public string messageTriggered;
+    public string receivedEndMessage;
     private bool triggeredOnce = false;
-
 
     public void OnCollisionEnter(Collision _collider)
     {
