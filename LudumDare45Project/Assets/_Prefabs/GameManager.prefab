@@ -43,6 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e769dda01299f949a9050eebea2570e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageTriggered: 
-  receivedDeathMessage: 
-  receivedBoulderStartMessage: 
+  boulderLaunch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8433460393022661659, guid: 782a2f304fa46bc4d8183f110a1ab842,
+          type: 3}
+        m_MethodName: EnableBoulder
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
