@@ -62,12 +62,12 @@ public class Player : MonoBehaviour
 
         if (is_dash == true)
         {
-            transform.Translate(dashX * speed * time * dash_speed, dashY * speed * time * dash_speed, 0);
+            transform.Translate(dashX * speed * time * dash_speed, 0, dashY * speed * time * dash_speed);
         }
         else
         {
             transform.Translate(Input.GetAxis("Horizontal") * time * speed, 0, 0);
-            transform.Translate(0, Input.GetAxis("Vertical") * time * speed, 0);
+            transform.Translate(0, 0, Input.GetAxis("Vertical") * time * speed);
         }
 
         if (Input.GetKeyDown(space) && wall_jump == true)
