@@ -7,7 +7,7 @@ public class EnemyMove : MonoBehaviour
     GameObject _enemyGO;
     Transform _enemyTransform;
 
-    const float moveSpeed = 5.0f;
+    float moveSpeed = 5.0f;
 
     public void Awake()
     {
@@ -17,6 +17,14 @@ public class EnemyMove : MonoBehaviour
 
     public void FixedUpdate()
     {
-        _enemyTransform.Translate(Vector3.forward * Time.deltaTime);
+        _enemyTransform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Wall")
+        {
+            moveSpeed *= -1;
+        }
     }
 }
