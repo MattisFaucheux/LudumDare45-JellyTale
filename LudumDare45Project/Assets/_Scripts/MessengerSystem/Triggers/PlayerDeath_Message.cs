@@ -8,9 +8,7 @@ public class PlayerDeath_Message : MonoBehaviour
     //Specify message type and if it was triggered
 
     public UnityEvent playerDeath;
-
-    /*public string messageTriggered;
-    public string receivedEndMessage;*/
+    
     private bool triggeredOnce = false;
 
     public void OnCollisionEnter(Collision _collider)
@@ -20,7 +18,6 @@ public class PlayerDeath_Message : MonoBehaviour
         {
             triggeredOnce = true;
             //Send message
-            //Messenger.Broadcast<GameObject>(messageTriggered, this.gameObject);
             playerDeath.Invoke();
         }
     }

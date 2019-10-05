@@ -32,12 +32,8 @@ public class Gamemanager : MonoBehaviour
         GameOver,
     };
 
-
+    //All events triggered by GameManager
     public UnityEvent boulderLaunch;
-    /*public string messageTriggered;
-    public string messageSent;
-    public string receivedDeathMessage;
-    public string receivedBoulderStartMessage;*/
 
     //Store current game state
     private GameState curState;
@@ -49,18 +45,11 @@ public class Gamemanager : MonoBehaviour
     void Start()
     {
         curState = GameState.MainMenu;
-
-        //Setup listeners to enable message receiving
-        /*Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
-        Messenger.AddListener<GameObject>(receivedDeathMessage, onDeathMessage);
-
-        Messenger.AddListener<GameObject>(messageSent, onBoulderStartMessage);
-        Messenger.AddListener<GameObject>(receivedBoulderStartMessage, onBoulderStartMessage);*/
     }
 
     private void FixedUpdate()
     {
-        //Check current game state and execute relative methods
+        //Switch between game states and execute relative methods
         switch (curState)
         {
             case GameState.MainMenu:
@@ -136,6 +125,9 @@ public class Gamemanager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Send message to Boulder to enable movement
+    /// </summary>
     void BoulderStart()
     {
         Debug.Log("Boulder rolling");

@@ -6,7 +6,7 @@ public class BoulderMove : MonoBehaviour
 {
 
     /// <summary>
-    /// The enemy's transform, used to move it
+    /// The boulder's transform, used to move it
     /// </summary>
     Transform _boulderTransform;
 
@@ -15,6 +15,7 @@ public class BoulderMove : MonoBehaviour
     /// </summary>
     float moveSpeed = 5.0f;
 
+    //Boulder immobile by default
     public bool move = false;
 
     public void Start()
@@ -30,6 +31,9 @@ public class BoulderMove : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method used to toggle boulder movement upon message
+    /// </summary>
     public void EnableBoulder()
     {
         move = true;
