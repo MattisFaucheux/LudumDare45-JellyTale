@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 /*
@@ -31,9 +32,12 @@ public class Gamemanager : MonoBehaviour
         GameOver,
     };
 
-    public string messageTriggered;
+
+    public UnityEvent boulderLaunch;
+    /*public string messageTriggered;
+    public string messageSent;
     public string receivedDeathMessage;
-    public string receivedBoulderStartMessage;
+    public string receivedBoulderStartMessage;*/
 
     //Store current game state
     private GameState curState;
@@ -47,11 +51,11 @@ public class Gamemanager : MonoBehaviour
         curState = GameState.MainMenu;
 
         //Setup listeners to enable message receiving
-        Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
+        /*Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
         Messenger.AddListener<GameObject>(receivedDeathMessage, onDeathMessage);
 
-        Messenger.AddListener<GameObject>(messageTriggered, onBoulderStartMessage);
-        Messenger.AddListener<GameObject>(receivedBoulderStartMessage, onBoulderStartMessage);
+        Messenger.AddListener<GameObject>(messageSent, onBoulderStartMessage);
+        Messenger.AddListener<GameObject>(receivedBoulderStartMessage, onBoulderStartMessage);*/
     }
 
     private void FixedUpdate()
@@ -68,7 +72,7 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone2:
-
+                BoulderStart();
                 break;
 
             case GameState.Zone3:
@@ -102,7 +106,7 @@ public class Gamemanager : MonoBehaviour
     /// React to player death
     /// </summary>
     /// <param name="propType"></param>
-    void onDeathMessage(GameObject propType)
+    public void onDeathMessage(GameObject propType)
     {
         Debug.Log("PlayerDead");
         curState = GameState.GameOver;
@@ -124,12 +128,16 @@ public class Gamemanager : MonoBehaviour
     /// React to boulder scene start trigger
     /// </summary>
     /// <param name="propType"></param>
-    void onBoulderStartMessage(GameObject propType)
+    public void onBoulderStartMessage(GameObject propType)
     {
         Debug.Log("BoulderStart");
         curState = GameState.Zone2;
         Debug.Log("Current State = " + curState);
+        
+    }
 
-
+    void BoulderStart()
+    {
+        Debug.Log("Boulder rolling");
     }
 }
