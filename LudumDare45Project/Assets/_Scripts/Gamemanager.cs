@@ -16,6 +16,7 @@ public class Gamemanager : MonoBehaviour
         Zone5,
         Zone6,
         End,
+        GameOver,
     };
 
     public string messageTriggered;
@@ -30,9 +31,27 @@ public class Gamemanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curState = GameState.MainMenu;
+
         //Setup listeners to enable message reciving
         Messenger.AddListener<GameObject>(messageTriggered, onDeathMessage);
         Messenger.AddListener<GameObject>(receivedDeathMessage, onDeathMessage);
+    }
+
+    private void FixedUpdate()
+    {
+        //Check current game state and execute relative methods
+        switch (curState)
+        {
+            case GameState.MainMenu:
+
+                break;
+
+            case GameState.GameOver:
+                PlayerDeath();
+
+                break;
+        }
     }
 
     /// <summary>
@@ -42,5 +61,14 @@ public class Gamemanager : MonoBehaviour
     void onDeathMessage(GameObject propType)
     {
         Debug.Log("PlayerDead");
+        curState = GameState.GameOver;
+        Debug.Log("Current State = " + curState);
+        
+
+    }
+
+    private void PlayerDeath()
+    {
+        Debug.Log(curState);
     }
 }
