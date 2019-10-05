@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * GOAL : Manage game states and relevant events 
+ * 
+ * INPUT : Messages from game objects 
+ * 
+ * OUTPUT : State modification and relevant method output
+ * 
+ * NOTE : Create methods beneath FixedUpdate and call them in Switch statement
+ * 
+ * */
+
 public class Gamemanager : MonoBehaviour
 {
     //Define all different game states
@@ -44,6 +56,30 @@ public class Gamemanager : MonoBehaviour
         switch (curState)
         {
             case GameState.MainMenu:
+
+                break;
+
+            case GameState.Zone1:
+
+                break;
+
+            case GameState.Zone2:
+
+                break;
+
+            case GameState.Zone3:
+
+                break;
+
+            case GameState.Zone4:
+
+                break;
+
+            case GameState.Zone5:
+
+                break;
+
+            case GameState.Zone6:
 
                 break;
 
