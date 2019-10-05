@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 230261626}
   - component: {fileID: 230261625}
   - component: {fileID: 230261624}
+  - component: {fileID: 230261627}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -203,6 +204,23 @@ Transform:
   m_Father: {fileID: 1102989083}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &230261627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230261623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d4021d1b4eea04e90dfab0d7638bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAt: {fileID: 0}
+  player: {fileID: 1028718820}
+  boundX: 1.2
+  boundY: 1.5
+  speed: 0.15
 --- !u!1001 &308737027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -433,6 +451,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
+        type: 3}
+      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
+        type: 3}
+      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
+        type: 3}
+      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
+        type: 3}
+      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1232974780}
     - target: {fileID: 3948201779016853434, guid: 7d04a150743368e41a8b13716b89c9d5,
         type: 3}
       propertyPath: m_Name
@@ -498,26 +536,6 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
-    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
-        type: 3}
-      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
-        type: 3}
-      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
-        type: 3}
-      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 884724636480141349, guid: 7d04a150743368e41a8b13716b89c9d5,
-        type: 3}
-      propertyPath: playerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1232974780}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d04a150743368e41a8b13716b89c9d5, type: 3}
 --- !u!1001 &811750008
