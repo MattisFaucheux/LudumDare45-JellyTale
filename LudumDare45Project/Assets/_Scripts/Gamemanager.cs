@@ -17,6 +17,10 @@ public class Gamemanager : MonoBehaviour
         End,
     };
 
+    public string messageTriggered;
+    public string receivedDeathMessage;
+
+
     private GameState curState;
 
     private bool playerDead = false;
@@ -30,6 +34,6 @@ public class Gamemanager : MonoBehaviour
 
     void onDeathMessage(GameObject propType)
     {
-
+        Debug.Log("PlayerDead");
     }
 }

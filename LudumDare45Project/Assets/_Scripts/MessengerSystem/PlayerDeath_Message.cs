@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnTriggerEnter_Message : MonoBehaviour
+public class PlayerDeath_Message : MonoBehaviour
 {
     public string messageTriggered;
     private bool triggeredOnce = false;
 
 
-    public void OnTriggerStay(Collider _collider)
+    public void OnCollisionEnter(Collision _collider)
     {
-        Messenger.Broadcast<GameObject>(messageTriggered, this.gameObject);
-        if (!triggeredOnce && Input.GetKey(KeyCode.E))
+        if (!triggeredOnce && _collider.gameObject.tag == "Enemy")
         {
             triggeredOnce = true;
             Messenger.Broadcast<GameObject>(messageTriggered, this.gameObject);
