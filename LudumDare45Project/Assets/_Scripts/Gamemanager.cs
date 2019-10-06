@@ -17,6 +17,9 @@ using UnityEngine.Events;
 
 public class Gamemanager : MonoBehaviour
 {
+    
+    public bool frozen = false;
+
     /// <summary>
     /// Maximum number of checkpoints
     /// </summary>
@@ -42,6 +45,7 @@ public class Gamemanager : MonoBehaviour
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
+    public UnityEvent freezePlayer;
 
     //Store current game state
     private GameState curState;
@@ -141,7 +145,9 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log(curState);
         GameObject.FindGameObjectWithTag("Player").transform.position = lastCPPos;
-        
+
+        frozen = true;
+        return;
     }
 
     /// <summary>
