@@ -37,20 +37,29 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
-    public bool can_Sprint = true; //1
+    /*public bool can_Sprint = true; //1
     public bool can_Dash = true; //2 
     public bool can_Moove = true; //3 
     public bool can_Jump = true; //4 
     public bool can_Double_Jump = true; //5 
-    public bool can_Wall_Jump = true; //6 
+    public bool can_Wall_Jump = true; //6 */
 
+    /// <summary>
+    /// Dictionaray containing all skills
+    /// 1 : move
+    /// 2 : jump
+    /// 3 : sprint
+    /// 4 : dash
+    /// 5 : double jump
+    /// 6 : wall jump
+    /// </summary>
     Dictionary<int, bool> playerSkills = new Dictionary<int, bool>();
 
     // Start is called before the first frame update
     void Start()
     {
         speed_copy = speed;
-        playerSkills.Add(1, false);
+        playerSkills.Add(1, true);
         playerSkills.Add(2, false);
         playerSkills.Add(3, false);
         playerSkills.Add(4, false);
@@ -78,32 +87,32 @@ public class Player : MonoBehaviour
             LastMooveX = Input.GetAxis("Horizontal");
         }
 
-        if (can_Sprint == true)
+        if (playerSkills[3] == true)
         {
             Player_Sprint();
         }
 
-        if (can_Dash == true)
+        if (playerSkills[4] == true)
         {
             Player_Dash();
         }
 
-        if (can_Moove == true)
+        if (playerSkills[1] == true)
         {
             Player_Moovement();
         }
 
-        if (can_Wall_Jump == true)
+        if (playerSkills[6] == true)
         {
             Player_Wall_Jump();
         }
 
-        if (can_Double_Jump == true)
+        if (playerSkills[5] == true)
         {
             Player_Double_Jump();
         }
 
-        if (can_Jump == true)
+        if (playerSkills[2] == true)
         {
             Player_Jump();
         }
@@ -268,9 +277,9 @@ public class Player : MonoBehaviour
     }
 
 
-    private void CheckSkills()
+    public void CheckSkills()
     {
-        for(int i = 0; i < playerSkills.Count; i++)
+        for(int i = 1; i < playerSkills.Count; i++)
         {
             if(playerSkills[i] == false)
             {
