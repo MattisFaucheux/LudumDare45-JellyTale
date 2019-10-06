@@ -14,7 +14,7 @@ public class PlayerDeath_Message : MonoBehaviour
     public void OnCollisionEnter(Collision _collider)
     {
         //Check if not triggered yet and if player collides with enemy
-        if (!triggeredOnce && _collider.gameObject.tag == "Player")
+        if (triggeredOnce != true && _collider.gameObject.tag == "Player")
         {
             triggeredOnce = true;
             //Send message

@@ -18,7 +18,7 @@ using UnityEngine.Events;
 public class Gamemanager : MonoBehaviour
 {
     
-    public bool frozen = false;
+    //public bool frozen = false;
 
     /// <summary>
     /// Maximum number of checkpoints
@@ -40,12 +40,12 @@ public class Gamemanager : MonoBehaviour
         GameOver,
     };
 
-    List<CheckPoint> checkPoints = new List<CheckPoint>();
+    //List<CheckPoint> checkPoints = new List<CheckPoint>();
     //public static GameObject[] CheckPointList;
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
-    public UnityEvent freezePlayer;
+    //public UnityEvent freezePlayer;
 
     //Store current game state
     private GameState curState;
@@ -53,8 +53,8 @@ public class Gamemanager : MonoBehaviour
     //Check player current state
     private bool playerDead = false;
 
-    private static Gamemanager instance;
-    public Vector3 lastCPPos;
+    /*private static Gamemanager instance;
+    public Vector3 lastCPPos;*/
 
     private void Awake()
     {
@@ -144,10 +144,10 @@ public class Gamemanager : MonoBehaviour
     private void PlayerDeath()
     {
         Debug.Log(curState);
-        GameObject.FindGameObjectWithTag("Player").transform.position = lastCPPos;
+        /*GameObject.FindGameObjectWithTag("Player").transform.position = lastCPPos;
 
         frozen = true;
-        return;
+        return;*/
     }
 
     /// <summary>
