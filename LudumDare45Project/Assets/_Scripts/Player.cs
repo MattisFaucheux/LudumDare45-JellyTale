@@ -44,6 +44,9 @@ public class Player : MonoBehaviour
     public bool can_Double_Jump = true;
     public bool can_Wall_Jump = true;
 
+    public bool shake_player = true;
+    public int shake_count = 5;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (transform.rotation == Quaternion.Euler(0, 180, 0))
         {
             is_turn = -1;
@@ -71,35 +75,55 @@ public class Player : MonoBehaviour
             LastMooveX = Input.GetAxis("Horizontal");
         }
 
-        if (can_Sprint == true)
+        if (can_Sprint == true && shake_player == false)
         {
             Player_Sprint();
         }
 
-        if (can_Dash == true)
+        if (can_Dash == true && shake_player == false)
         {
             Player_Dash();
         }
 
-        if (can_Moove == true)
+        if (can_Moove == true && shake_player == false)
         {
             Player_Moovement();
         }
 
-        if (can_Wall_Jump == true)
+        if (can_Wall_Jump == true && shake_player == false)
         {
             Player_Wall_Jump();
         }
 
-        if (can_Double_Jump == true)
+        if (can_Double_Jump == true && shake_player == false)
         {
             Player_Double_Jump();
         }
 
-        if (can_Jump == true)
+        if (can_Jump == true && shake_player == false)
         {
             Player_Jump();
         }
+
+       
+        
+        
+        if (Input.GetKeyDown(space))
+        {
+            if (shake_player == true)
+            {
+                GetComponent<Shake>().ShakeMe();
+                shake_count--;
+
+                if (shake_count == 0)
+                {
+                    shake_player = false;
+                }
+            }
+        }
+
+
+
 
     }
 
