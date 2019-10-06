@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Enemy
   - Boulder
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

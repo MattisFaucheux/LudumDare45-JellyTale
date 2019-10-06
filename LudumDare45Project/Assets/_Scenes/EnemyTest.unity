@@ -669,6 +669,7 @@ GameObject:
   - component: {fileID: 2114771058}
   - component: {fileID: 2114771057}
   - component: {fileID: 2114771062}
+  - component: {fileID: 2114771063}
   m_Layer: 0
   m_Name: playerDummy
   m_TagString: Player
@@ -780,6 +781,32 @@ MonoBehaviour:
   playerDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2114771063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114771056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ede2375c3a61984dbd03e31f646bfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  space: 0
+  sprint: 0
+  dash: 0
+  speed: 10
+  speed_copy: 0
+  sprint_speed: 1.7
+  jump_speed: 600
+  double_jump_speed: 50
+  dashX: 0
+  dashY: 0
+  dash_speed: 5
+  dash_time: 0.2
+  wall_jump: 0
 --- !u!1001 &2621562171948588616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -864,7 +891,7 @@ PrefabInstance:
     - target: {fileID: 4061855786877631793, guid: 9740c1ff5ef4b9643a32a8835cff2a30,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.78
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4061855786877631793, guid: 9740c1ff5ef4b9643a32a8835cff2a30,
         type: 3}
@@ -874,7 +901,7 @@ PrefabInstance:
     - target: {fileID: 4061855786877631793, guid: 9740c1ff5ef4b9643a32a8835cff2a30,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.8522983
+      value: -3.14
       objectReference: {fileID: 0}
     - target: {fileID: 4061855786877631793, guid: 9740c1ff5ef4b9643a32a8835cff2a30,
         type: 3}
@@ -973,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 3948201779016853438, guid: 7d04a150743368e41a8b13716b89c9d5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.38
       objectReference: {fileID: 0}
     - target: {fileID: 3948201779016853438, guid: 7d04a150743368e41a8b13716b89c9d5,
         type: 3}

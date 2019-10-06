@@ -17,6 +17,11 @@ using UnityEngine.Events;
 
 public class Gamemanager : MonoBehaviour
 {
+    /// <summary>
+    /// Maximum number of checkpoints
+    /// </summary>
+    const int MAXINDEX = 6;
+
     //Define all different game states
     private enum GameState
     {
@@ -33,6 +38,7 @@ public class Gamemanager : MonoBehaviour
     };
 
     List<CheckPoint> checkPoints = new List<CheckPoint>();
+    //public static GameObject[] CheckPointList;
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
@@ -43,10 +49,31 @@ public class Gamemanager : MonoBehaviour
     //Check player current state
     private bool playerDead = false;
 
+    private static Gamemanager instance;
+    Vector3 lastCPPos;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*for (int i = 0; i < MAXINDEX; i++)
+        {
+            checkPoints.Add(new CheckPoint (false, transform));
+        }*/
+        //CheckPointList = GameObject.FindGameObjectsWithTag("CheckPoint");
         curState = GameState.MainMenu;
     }
 
@@ -114,6 +141,8 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log(curState);
         Destroy(GameObject.FindGameObjectWithTag("Player"), 0.2f);
+
+        
     }
 
     /// <summary>
@@ -135,5 +164,11 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log("Boulder rolling");
         boulderLaunch.Invoke();
+    }
+
+    private void setCp()
+    {
+        //lastCPPos
+
     }
 }
