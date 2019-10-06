@@ -39,6 +39,7 @@ public class Gamemanager : MonoBehaviour
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
+    public UnityEvent newSkill;
 
     //Store current game state
     private GameState curState;
@@ -164,5 +165,11 @@ public class Gamemanager : MonoBehaviour
         //Current state updated to newly fetched state index
         curState = (GameState)a.GetValue(i + 1);
         Debug.Log(curState);
+    }
+
+    private void NewSkill()
+    {
+        Debug.Log("New Skill unlocked");
+        newSkill.Invoke();
     }
 }

@@ -37,19 +37,26 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
-    public bool can_Sprint = true;
-    public bool can_Dash = true;
-    public bool can_Moove = true;
-    public bool can_Jump = true;
-    public bool can_Double_Jump = true;
-    public bool can_Wall_Jump = true;
+    public bool can_Sprint = true; //1
+    public bool can_Dash = true; //2 
+    public bool can_Moove = true; //3 
+    public bool can_Jump = true; //4 
+    public bool can_Double_Jump = true; //5 
+    public bool can_Wall_Jump = true; //6 
 
+    Dictionary<int, bool> playerSkills = new Dictionary<int, bool>();
 
     // Start is called before the first frame update
     void Start()
     {
         speed_copy = speed;
-        
+        playerSkills.Add(1, false);
+        playerSkills.Add(2, false);
+        playerSkills.Add(3, false);
+        playerSkills.Add(4, false);
+        playerSkills.Add(5, false);
+        playerSkills.Add(6, false);
+
     }
 
     // Update is called once per frame
@@ -260,5 +267,18 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().velocity = velocity;
     }
 
+
+    private void CheckSkills()
+    {
+        for(int i = 0; i < playerSkills.Count; i++)
+        {
+            if(playerSkills[i] == false)
+            {
+                playerSkills[i] = true;
+                Debug.Log(playerSkills[i]);
+                break;
+            }
+        }
+    }
 
 }
