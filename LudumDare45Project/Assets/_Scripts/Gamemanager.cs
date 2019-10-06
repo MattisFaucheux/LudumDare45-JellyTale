@@ -71,6 +71,7 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone3:
+                Debug.Log("State3 active");
                 BoulderStart();
                 break;
 
@@ -135,8 +136,9 @@ public class Gamemanager : MonoBehaviour
     public void onBoulderStartMessage(GameObject propType)
     {
         Debug.Log("BoulderStart");
-        curState = GameState.Zone2;
+        //curState = GameState.Zone3;
         Debug.Log("Current State = " + curState);
+        
         
     }
 
@@ -147,6 +149,8 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log("Boulder rolling");
         boulderLaunch.Invoke();
+        GameObject boulder = GameObject.FindGameObjectWithTag("Boulder");
+        boulder.GetComponent<Rigidbody>().useGravity = enabled;
     }
 
     public void onNewState()
