@@ -60,11 +60,11 @@ public class Player : MonoBehaviour
     {
         speed_copy = speed;
         playerSkills.Add(1, true);
-        playerSkills.Add(2, false);
-        playerSkills.Add(3, false);
-        playerSkills.Add(4, false);
-        playerSkills.Add(5, false);
-        playerSkills.Add(6, false);
+        playerSkills.Add(2, true);
+        playerSkills.Add(3, true);
+        playerSkills.Add(4, true);
+        playerSkills.Add(5, true);
+        playerSkills.Add(6, true);
 
     }
 
