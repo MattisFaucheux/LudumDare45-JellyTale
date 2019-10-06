@@ -67,11 +67,11 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone2:
-                BoulderStart();
+                
                 break;
 
             case GameState.Zone3:
-
+                BoulderStart();
                 break;
 
             case GameState.Zone4:
