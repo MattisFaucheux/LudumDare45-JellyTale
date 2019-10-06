@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public float jump_speed = 600f;
     public float double_jump_speed = 50f;
     public float dashX;
-    public float dashY;
+    public float dashY =0;
     public float dash_speed = 5f;
     public float dash_time = 0.2f;
 
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
 
             is_dash = true;
             dashX = Input.GetAxis("Horizontal") * is_turn;
-            dashY = Input.GetAxis("Vertical")* is_turn;
+            //dashY = Input.GetAxis("Vertical")* is_turn;
             Physics.gravity = new Vector3(0, 0, 0);
             Vector3 velocity = GetComponent<Rigidbody>().velocity;
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (Physics.Raycast(transform.position, new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), speed * time * 3.1f) == false)
+            if (Physics.Raycast(transform.position, new Vector3(Input.GetAxis("Horizontal"), 0, 0), speed * time * 3.1f) == false)
             {
                 if (Input.GetAxis("Horizontal") != 0)
                 {
@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
                 }
 
                 transform.Translate(Input.GetAxisRaw("Horizontal") * is_turn * time * speed, 0, 0);
-                transform.Translate(0, 0, Input.GetAxis("Vertical") * is_turn * time * speed);
+                //transform.Translate(0, 0, Input.GetAxis("Vertical") * is_turn * time * speed);
                 // LastMooveX = Input.GetAxis("Horizontal");
 
                 if (Input.GetAxis("Horizontal") < 0)
