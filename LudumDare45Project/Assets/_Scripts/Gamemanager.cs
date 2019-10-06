@@ -47,6 +47,11 @@ public class Gamemanager : MonoBehaviour
     //Check player current state
     private bool playerDead = false;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

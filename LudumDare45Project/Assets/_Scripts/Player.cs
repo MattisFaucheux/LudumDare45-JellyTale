@@ -68,6 +68,12 @@ public class Player : MonoBehaviour
 
     bool scaling = false;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
