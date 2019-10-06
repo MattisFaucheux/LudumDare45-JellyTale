@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Boulder
   - CheckPoint
+  - GM
   layers:
   - Default
   - TransparentFX

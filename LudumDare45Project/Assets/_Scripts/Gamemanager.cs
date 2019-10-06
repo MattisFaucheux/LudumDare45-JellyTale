@@ -50,7 +50,7 @@ public class Gamemanager : MonoBehaviour
     private bool playerDead = false;
 
     private static Gamemanager instance;
-    Vector3 lastCPPos;
+    public Vector3 lastCPPos;
 
     private void Awake()
     {
@@ -140,8 +140,7 @@ public class Gamemanager : MonoBehaviour
     private void PlayerDeath()
     {
         Debug.Log(curState);
-        Destroy(GameObject.FindGameObjectWithTag("Player"), 0.2f);
-
+        GameObject.FindGameObjectWithTag("Player").transform.position = lastCPPos;
         
     }
 
@@ -164,11 +163,5 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log("Boulder rolling");
         boulderLaunch.Invoke();
-    }
-
-    private void setCp()
-    {
-        //lastCPPos
-
     }
 }
