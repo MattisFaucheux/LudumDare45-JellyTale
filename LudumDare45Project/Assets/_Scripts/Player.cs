@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     public Vector3 position;
 
+    public UnityEvent newState;
+
     public KeyCode space;
     public KeyCode sprint;
     public KeyCode dash;
@@ -45,9 +47,9 @@ public class Player : MonoBehaviour
     /// 1 : move
     /// 2 : jump
     /// 3 : sprint
-    /// 4 : dash
+    /// 4 : wall jump
     /// 5 : double jump
-    /// 6 : wall jump
+    /// 6 : dash
     /// </summary>
     Dictionary<int, bool> playerSkills = new Dictionary<int, bool>();
 
@@ -131,7 +133,7 @@ public class Player : MonoBehaviour
             Player_Sprint();
         }
 
-        if (playerSkills[4] == true && shake_player == false && cooldown_dash == true && Input.GetAxis("Horizontal") != 0)
+        if (playerSkills[6] == true && shake_player == false && cooldown_dash == true && Input.GetAxis("Horizontal") != 0)
         {
             Player_Dash();
         }
@@ -141,7 +143,7 @@ public class Player : MonoBehaviour
             Player_Moovement();
         }
 
-        if (playerSkills[6] == true && shake_player == false)
+        if (playerSkills[4] == true && shake_player == false)
         {
             Player_Wall_Jump();
         }
@@ -170,6 +172,7 @@ public class Player : MonoBehaviour
                 if (shake_count == 0)
                 {
                     shake_player = false;
+                    newState.Invoke();
                 }
             }
         }
