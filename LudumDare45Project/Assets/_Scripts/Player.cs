@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -44,12 +45,11 @@ public class Player : MonoBehaviour
     public bool can_Wall_Jump = true;
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
         speed_copy = speed;
+        
     }
 
     // Update is called once per frame

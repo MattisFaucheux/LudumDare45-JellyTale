@@ -17,6 +17,11 @@ using UnityEngine.Events;
 
 public class Gamemanager : MonoBehaviour
 {
+    /// <summary>
+    /// Maximum number of checkpoints
+    /// </summary>
+    const int MAXINDEX = 6;
+
     //Define all different game states
     private enum GameState
     {
@@ -31,6 +36,7 @@ public class Gamemanager : MonoBehaviour
         End,
         GameOver,
     };
+    
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
@@ -40,6 +46,8 @@ public class Gamemanager : MonoBehaviour
 
     //Check player current state
     private bool playerDead = false;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -98,9 +106,18 @@ public class Gamemanager : MonoBehaviour
     public void onDeathMessage(GameObject propType)
     {
         Debug.Log("PlayerDead");
-        curState = GameState.GameOver;
         Debug.Log("Current State = " + curState);
-        
+
+        //Player position takes active checkpoint position
+        GameObject.FindGameObjectWithTag("Player").transform.position = CheckPoint.GetActiveCheckPointPosition();
+        //Freeze player rotation
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+        //On player input, unfreeze rotations
+        if (Input.anyKey)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        }
 
     }
 
@@ -110,7 +127,7 @@ public class Gamemanager : MonoBehaviour
     private void PlayerDeath()
     {
         Debug.Log(curState);
-        Destroy(GameObject.FindGameObjectWithTag("Player"), 0.2f);
+        
     }
 
     /// <summary>
