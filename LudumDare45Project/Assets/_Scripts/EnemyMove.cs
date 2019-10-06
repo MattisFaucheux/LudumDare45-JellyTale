@@ -13,6 +13,7 @@ public class EnemyMove : MonoBehaviour
     /// A modifier to the base movement speed
     /// </summary>
     float moveSpeed = 5.0f;
+    float rotation = 90;
 
     public void Awake()
     {
@@ -35,7 +36,10 @@ public class EnemyMove : MonoBehaviour
     {
         if(collision.gameObject.tag == "Wall")
         {
-            moveSpeed *= -1;
+            transform.rotation = Quaternion.Euler(0, rotation, 0);
+            rotation = rotation + 180;
+            
+
         }else if(collision.gameObject.tag == "Player")
         {
             //Placeholder until message system implemented
