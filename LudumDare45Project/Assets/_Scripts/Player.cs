@@ -58,6 +58,23 @@ public class Player : MonoBehaviour
 
         time = Time.deltaTime;
 
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            LastMooveX = Input.GetAxis("Horizontal");
+        }
+
+
+        Player_Sprint();
+        Player_Dash();
+        Player_Moovement();
+        Player_Wall_Jump();
+        Player_Double_Jump();
+        Player_Jump();
+
+    }
+
+    void Player_Sprint()
+    {
         if (Input.GetKey(sprint))
         {
             speed = speed_copy * sprint_speed;
@@ -66,95 +83,100 @@ public class Player : MonoBehaviour
         {
             speed = speed_copy;
         }
+    }
 
-
+    void Player_Dash()
+    {
         if (Input.GetKeyDown(dash))
         {
             is_dash = true;
-            dashX = Input.GetAxis("Horizontal")* is_turn;
-            dashY = Input.GetAxis("Vertical");
+            dashX = Input.GetAxis("Horizontal") * is_turn;
+            dashY = Input.GetAxis("Vertical")* is_turn;
             Physics.gravity = new Vector3(0, 0, 0);
             Vector3 velocity = GetComponent<Rigidbody>().velocity;
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
             StartCoroutine(MyDash(velocity));
         }
+    }
 
-        if(Input.GetAxis("Horizontal") != 0)
-        {
-            LastMooveX = Input.GetAxis("Horizontal");
-        }
-
-
+    void Player_Moovement()
+    {
         if (is_dash == true)
         {
-            if (Physics.Raycast(transform.position, new Vector3(dashX*is_turn, 0, dashY*is_turn), speed * time * dash_speed * 1f) == false)
+            if (Physics.Raycast(transform.position, new Vector3(dashX * is_turn, 0, dashY * is_turn), speed * time * dash_speed * 1f) == false)
             {
                 transform.Translate(dashX * speed * time * dash_speed, 0, dashY * speed * time * dash_speed);
             }
         }
         else
-        { 
+        {
             if (Physics.Raycast(transform.position, new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), speed * time * 3.1f) == false)
             {
                 transform.Translate(Input.GetAxisRaw("Horizontal") * is_turn * time * speed, 0, 0);
                 transform.Translate(0, 0, Input.GetAxis("Vertical") * is_turn * time * speed);
-               // LastMooveX = Input.GetAxis("Horizontal");
+                // LastMooveX = Input.GetAxis("Horizontal");
 
-                if(Input.GetAxis("Horizontal") <0)
+                if (Input.GetAxis("Horizontal") < 0)
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
-                else if(Input.GetAxis("Horizontal") > 0)
+                else if (Input.GetAxis("Horizontal") > 0)
                 {
                     transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
             }
         }
+    }
 
-
-
+    void Player_Wall_Jump()
+    {
         if (Input.GetKeyDown(space) && wall_jump == true && touch_ground == false)
         {
-            if (Physics.Raycast(transform.position, new Vector3(1*is_turn, 0, 0), speed * time * 3.1f) == true)
+            if (Physics.Raycast(transform.position, new Vector3(1 * is_turn, 0, 0), speed * time * 3.1f) == true)
             {
-                LastMooveX = -1 *is_turn;
+                LastMooveX = -1 * is_turn;
 
             }
-            else if (Physics.Raycast(transform.position, new Vector3(-1*is_turn, 0, 0), speed * time * 3.1f) == true)
+            else if (Physics.Raycast(transform.position, new Vector3(-1 * is_turn, 0, 0), speed * time * 3.1f) == true)
             {
                 LastMooveX = 1 * is_turn;
             }
 
-            if(LastMooveX >0)
+            if (LastMooveX > 0)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0); ;
             }
-            else if(LastMooveX < 0)
+            else if (LastMooveX < 0)
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
 
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
-            GetComponent<Rigidbody>().AddForce(new Vector3(LastMooveX*jump_speed * wall_jump_X, jump_speed * wall_jump_Y, 0));
+            GetComponent<Rigidbody>().AddForce(new Vector3(LastMooveX * jump_speed * wall_jump_X, jump_speed * wall_jump_Y, 0));
         }
-        else if (Input.GetKeyDown(space) && wall_jump == false && (is_jumping == false || double_jump == true))
+    }
+
+    void Player_Jump()
+    {
+        if (Input.GetKeyDown(space) && wall_jump == false && is_jumping == false)
         {
-            if (is_jumping == true)
-            {
-                double_jump = false;
+            is_jumping = true;
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed, 0));
+        }
 
-                if (GetComponent<Rigidbody>().velocity.y < 0f)
-                {
-                 double_jump_speed *= -GetComponent<Rigidbody>().velocity.y;
-                }
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed + double_jump_speed, 0));
-            }
-            else
-            {
-                is_jumping = true;
+    }
 
-                GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed, 0));
+    void Player_Double_Jump()
+    {
+        if (Input.GetKeyDown(space) && wall_jump == false && is_jumping == true && double_jump == true)
+        {
+            double_jump = false;
+
+            if (GetComponent<Rigidbody>().velocity.y < 0f)
+            {
+                double_jump_speed *= -GetComponent<Rigidbody>().velocity.y;
             }
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed + double_jump_speed, 0));
         }
     }
 
