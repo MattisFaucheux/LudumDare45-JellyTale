@@ -23,37 +23,35 @@ public class Gamemanager : MonoBehaviour
     const int MAXINDEX = 6;
 
     //Define all different game states
-    private enum GameState
+    protected enum GameState
     {
         None = 0,
-        MainMenu,
-        Zone1,
-        Zone2,
-        Zone3,
-        Zone4,
-        Zone5,
-        Zone6,
-        End,
-        GameOver,
+        MainMenu = 1,
+        Zone1 = 2,
+        Zone2 = 3,
+        Zone3 = 4,
+        Zone4 = 5,
+        Zone5 = 6,
+        Zone6 = 7,
+        End = 8,
+        GameOver = 9,
     };
-    
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
+    public UnityEvent newSkill;
 
     //Store current game state
     private GameState curState;
 
     //Check player current state
     private bool playerDead = false;
-    
-
 
     // Start is called before the first frame update
     void Start()
     {
         curState = GameState.MainMenu;
-    }
+}
 
     private void FixedUpdate()
     {
@@ -149,5 +147,32 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log("Boulder rolling");
         boulderLaunch.Invoke();
+    }
+
+    public void onNewState()
+    {
+
+        //Create an array storing all enum indexes
+        System.Array a = System.Enum.GetValues(typeof(GameState));
+        int i = 0;
+        //Iterate through array to fetch current state index
+        for (i = 0; i < a.Length; i++)
+        {
+            //Go to next index
+            if ((int)a.GetValue(i) == (int)curState)
+                break;
+        }
+        //Current state updated to newly fetched state index
+        curState = (GameState)a.GetValue(i + 1);
+        Debug.Log(curState);
+    }
+
+    /// <summary>
+    /// Call for new skill unlock
+    /// </summary>
+    public void onNewSkill()
+    {
+        Debug.Log("New Skill unlocked");
+        newSkill.Invoke();
     }
 }

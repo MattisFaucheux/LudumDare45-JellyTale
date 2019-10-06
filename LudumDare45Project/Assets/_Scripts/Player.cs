@@ -37,12 +37,17 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
-    public bool can_Sprint = true;
-    public bool can_Dash = true;
-    public bool can_Moove = true;
-    public bool can_Jump = true;
-    public bool can_Double_Jump = true;
-    public bool can_Wall_Jump = true;
+
+    /// <summary>
+    /// Dictionaray containing all skills
+    /// 1 : move
+    /// 2 : jump
+    /// 3 : sprint
+    /// 4 : dash
+    /// 5 : double jump
+    /// 6 : wall jump
+    /// </summary>
+    Dictionary<int, bool> playerSkills = new Dictionary<int, bool>();
 
     public bool cooldown_dash = true;
     public float time_dash_cooldown = 1f;
@@ -61,7 +66,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         speed_copy = speed;
-        
+
+        //Set dictionary values
+        playerSkills.Add(1, true);
+        playerSkills.Add(2, true);
+        playerSkills.Add(3, true);
+        playerSkills.Add(4, true);
+        playerSkills.Add(5, true);
+        playerSkills.Add(6, true);
+
     }
 
     // Update is called once per frame
@@ -84,33 +97,35 @@ public class Player : MonoBehaviour
             LastMooveX = Input.GetAxis("Horizontal");
         }
 
-        if (can_Sprint == true && shake_player == false)
+
+        if (playerSkills[3] == true)
         {
             Player_Sprint();
         }
 
-        if (can_Dash == true && shake_player == false && cooldown_dash == true)
+        if (playerSkills[4] == true)
         {
             Player_Dash();
         }
 
-        if (can_Moove == true && shake_player == false)
+        if (playerSkills[1] == true)
         {
             Player_Moovement();
         }
 
-        if (can_Wall_Jump == true && shake_player == false)
+        if (playerSkills[6] == true)
         {
             Player_Wall_Jump();
         }
-
-        if (can_Double_Jump == true && shake_player == false)
+        
+        if (playerSkills[5] == true)
         {
             Player_Double_Jump();
         }
 
-        if (can_Jump == true && shake_player == false)
+        if (playerSkills[2] == true)
         {
+            Debug.Log("Can Jump");
             Player_Jump();
         }
 
@@ -298,5 +313,22 @@ public class Player : MonoBehaviour
         cooldown_dash = true;
     }
 
+    /// <summary>
+    /// Check state of different skill
+    /// </summary>
+    public void CheckSkills()
+    {
+        //Go through dictionary
+        for(int i = 1; i < playerSkills.Count; i++)
+        {
+            //first element found to be false will be passed as true
+            if(playerSkills[i] == false)
+            {
+                playerSkills[i] = true;
+                Debug.Log(playerSkills[i]);
+                break;
+            }
+        }
+    }
 
 }
