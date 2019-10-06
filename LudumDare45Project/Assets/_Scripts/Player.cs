@@ -44,8 +44,17 @@ public class Player : MonoBehaviour
     public bool can_Double_Jump = true;
     public bool can_Wall_Jump = true;
 
+    public bool cooldown_dash = true;
+    public float time_dash_cooldown = 1f;
+
     public bool shake_player = true;
     public int shake_count = 5;
+
+    public CameraShake cameraShake;
+
+    public float time_shake = 0.5f;
+    public float time_shake_dash = 0.05f;
+    public float force_shake = 0.15f;
 
 
     // Start is called before the first frame update
@@ -80,7 +89,7 @@ public class Player : MonoBehaviour
             Player_Sprint();
         }
 
-        if (can_Dash == true && shake_player == false)
+        if (can_Dash == true && shake_player == false && cooldown_dash == true)
         {
             Player_Dash();
         }
@@ -113,6 +122,7 @@ public class Player : MonoBehaviour
             if (shake_player == true)
             {
                 GetComponent<Shake>().ShakeMe();
+                StartCoroutine(cameraShake.Shake(time_shake, force_shake));
                 shake_count--;
 
                 if (shake_count == 0)
@@ -143,6 +153,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(dash))
         {
+            StartCoroutine(cameraShake.Shake(time_shake_dash, force_shake));
             is_dash = true;
             dashX = Input.GetAxis("Horizontal") * is_turn;
             dashY = Input.GetAxis("Vertical")* is_turn;
@@ -150,6 +161,7 @@ public class Player : MonoBehaviour
             Vector3 velocity = GetComponent<Rigidbody>().velocity;
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
             StartCoroutine(MyDash(velocity));
+            cooldown_dash = false;
         }
     }
 
@@ -282,6 +294,8 @@ public class Player : MonoBehaviour
         is_dash = false;
         Physics.gravity = new Vector3(0, -40, 0);
         GetComponent<Rigidbody>().velocity = velocity;
+        yield return new WaitForSeconds(time_dash_cooldown);
+        cooldown_dash = true;
     }
 
 
