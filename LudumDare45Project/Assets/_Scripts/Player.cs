@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
+
     /// <summary>
     /// Dictionaray containing all skills
     /// 1 : move
@@ -47,6 +48,19 @@ public class Player : MonoBehaviour
     /// 6 : wall jump
     /// </summary>
     Dictionary<int, bool> playerSkills = new Dictionary<int, bool>();
+
+    public bool cooldown_dash = true;
+    public float time_dash_cooldown = 1f;
+
+    public bool shake_player = true;
+    public int shake_count = 5;
+
+    public CameraShake cameraShake;
+
+    public float time_shake = 0.5f;
+    public float time_shake_dash = 0.05f;
+    public float force_shake = 0.15f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +80,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (transform.rotation == Quaternion.Euler(0, 180, 0))
         {
             is_turn = -1;
@@ -81,6 +96,7 @@ public class Player : MonoBehaviour
         {
             LastMooveX = Input.GetAxis("Horizontal");
         }
+
 
         if (playerSkills[3] == true)
         {
@@ -101,7 +117,7 @@ public class Player : MonoBehaviour
         {
             Player_Wall_Jump();
         }
-
+        
         if (playerSkills[5] == true)
         {
             Player_Double_Jump();
@@ -112,6 +128,27 @@ public class Player : MonoBehaviour
             Debug.Log("Can Jump");
             Player_Jump();
         }
+
+       
+        
+        
+        if (Input.GetKeyDown(space))
+        {
+            if (shake_player == true)
+            {
+                GetComponent<Shake>().ShakeMe();
+                StartCoroutine(cameraShake.Shake(time_shake, force_shake));
+                shake_count--;
+
+                if (shake_count == 0)
+                {
+                    shake_player = false;
+                }
+            }
+        }
+
+
+
 
     }
 
@@ -131,6 +168,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(dash))
         {
+            StartCoroutine(cameraShake.Shake(time_shake_dash, force_shake));
             is_dash = true;
             dashX = Input.GetAxis("Horizontal") * is_turn;
             dashY = Input.GetAxis("Vertical")* is_turn;
@@ -138,6 +176,7 @@ public class Player : MonoBehaviour
             Vector3 velocity = GetComponent<Rigidbody>().velocity;
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
             StartCoroutine(MyDash(velocity));
+            cooldown_dash = false;
         }
     }
 
@@ -270,6 +309,8 @@ public class Player : MonoBehaviour
         is_dash = false;
         Physics.gravity = new Vector3(0, -40, 0);
         GetComponent<Rigidbody>().velocity = velocity;
+        yield return new WaitForSeconds(time_dash_cooldown);
+        cooldown_dash = true;
     }
 
     /// <summary>
