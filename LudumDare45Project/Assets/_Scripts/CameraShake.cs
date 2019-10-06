@@ -4,24 +4,7 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public KeyCode dash;
 
-    public float time_shake = .15f;
-    public float force_shake = .25f;
-
-
-    //void CamShake ()
-    //{
-    //   // if (Input.GetKeyDown(dash))
-    //    //{
-    //        StartCoroutine(Shake(time_shake, force_shake));
-    //    //}
-    //}
-    
-    
-    
-    
-    
     public IEnumerator Shake(float duration, float magnitude)
     {
         Vector3 originalPos = transform.localPosition;

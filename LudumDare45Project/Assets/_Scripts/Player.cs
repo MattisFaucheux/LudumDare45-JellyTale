@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
+    public Animator animator;
+
 
     /// <summary>
     /// Dictionaray containing all skills
@@ -59,8 +61,10 @@ public class Player : MonoBehaviour
 
     public float time_shake = 0.5f;
     public float time_shake_dash = 0.05f;
-    public float force_shake = 0.15f;
+    public float force_shake = 0.3f;
+    public float initial_force_shake = 0.15f;
 
+    bool scaling = false;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +84,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        if ((is_jumping == true || touch_ground == false)  && playerSkills[1] == true)
+        {
+            if (GetComponent<Rigidbody>().velocity.y < 0f && transform.localScale.x < 1f && transform.localScale.y > 1f)
+            {
+                transform.localScale += new Vector3(0.015f, -0.015f, 0);
+                scaling = true;
+            }
+            else if (GetComponent<Rigidbody>().velocity.y > 0f && transform.localScale.x > 0.7f && transform.localScale.x < 1.3f)
+            {
+                transform.localScale += new Vector3(-0.03f, 0.03f, 0);
+            }
+        }
+        else if (transform.localScale.x >= 1f && transform.localScale.y <= 1f)
+        {
+             transform.localScale += new Vector3(-0.02f, 0.02f, 0);
+            scaling = false;
+        }
+         
+
+
+
+
         
         if (transform.rotation == Quaternion.Euler(0, 180, 0))
         {
@@ -98,34 +126,33 @@ public class Player : MonoBehaviour
         }
 
 
-        if (playerSkills[3] == true)
+        if (playerSkills[3] == true && shake_player == false)
         {
             Player_Sprint();
         }
 
-        if (playerSkills[4] == true)
+        if (playerSkills[4] == true && shake_player == false && cooldown_dash == true && Input.GetAxis("Horizontal") != 0)
         {
             Player_Dash();
         }
 
-        if (playerSkills[1] == true)
+        if (playerSkills[1] == true && shake_player == false)
         {
             Player_Moovement();
         }
 
-        if (playerSkills[6] == true)
+        if (playerSkills[6] == true && shake_player == false)
         {
             Player_Wall_Jump();
         }
         
-        if (playerSkills[5] == true)
+        if (playerSkills[5] == true && shake_player == false)
         {
             Player_Double_Jump();
         }
 
-        if (playerSkills[2] == true)
+        if (playerSkills[2] == true && shake_player == false)
         {
-            Debug.Log("Can Jump");
             Player_Jump();
         }
 
@@ -137,7 +164,7 @@ public class Player : MonoBehaviour
             if (shake_player == true)
             {
                 GetComponent<Shake>().ShakeMe();
-                StartCoroutine(cameraShake.Shake(time_shake, force_shake));
+                StartCoroutine(cameraShake.Shake(time_shake, initial_force_shake));
                 shake_count--;
 
                 if (shake_count == 0)
@@ -169,6 +196,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(dash))
         {
             StartCoroutine(cameraShake.Shake(time_shake_dash, force_shake));
+
             is_dash = true;
             dashX = Input.GetAxis("Horizontal") * is_turn;
             dashY = Input.GetAxis("Vertical")* is_turn;
@@ -193,6 +221,15 @@ public class Player : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")), speed * time * 3.1f) == false)
             {
+                if (Input.GetAxis("Horizontal") != 0)
+                {
+                    animator.SetBool("IsMoving", true);
+                }
+                else
+                {
+                    animator.SetBool("IsMoving", false);
+                }
+
                 transform.Translate(Input.GetAxisRaw("Horizontal") * is_turn * time * speed, 0, 0);
                 transform.Translate(0, 0, Input.GetAxis("Vertical") * is_turn * time * speed);
                 // LastMooveX = Input.GetAxis("Horizontal");
@@ -234,6 +271,7 @@ public class Player : MonoBehaviour
 
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
             GetComponent<Rigidbody>().AddForce(new Vector3(LastMooveX * jump_speed * wall_jump_X, jump_speed * wall_jump_Y, 0));
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -258,6 +296,7 @@ public class Player : MonoBehaviour
                 double_jump_speed *= -GetComponent<Rigidbody>().velocity.y;
             }
             GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed + double_jump_speed, 0));
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -268,6 +307,11 @@ public class Player : MonoBehaviour
             is_jumping = false;
             double_jump = true;
             double_jump_speed = 50f;
+
+            if (scaling == true && playerSkills[1] == true)
+            {
+                transform.localScale = new Vector3(1.2f, 0.8f, 1);
+            }
         }
         else if (col.transform.tag == "Wall")
         {
@@ -300,6 +344,9 @@ public class Player : MonoBehaviour
         else if(col.transform.tag == "Ground")
         {
             touch_ground = false;
+
+
+
         }
     }
 

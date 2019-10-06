@@ -14,9 +14,9 @@ public class Shake : MonoBehaviour
         if (shaking == true)
         {
             Vector3 newPos = Random.insideUnitSphere * (Time.deltaTime * force_shake);
-            newPos.y += 0.5f;
+            newPos.y += 0.75f;
             newPos.z = transform.position.z;
-            newPos.x -= 4.5f;
+           // newPos.x = 4.5f;
 
             transform.position = newPos;
         }
