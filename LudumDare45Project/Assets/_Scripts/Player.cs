@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
 
         if (playerSkills[2] == true)
         {
+            Debug.Log("Can Jump");
             Player_Jump();
         }
 
