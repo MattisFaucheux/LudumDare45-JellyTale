@@ -36,6 +36,14 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
+    public bool can_Sprint = true;
+    public bool can_Dash = true;
+    public bool can_Moove = true;
+    public bool can_Jump = true;
+    public bool can_Double_Jump = true;
+    public bool can_Wall_Jump = true;
+
+
 
 
     // Start is called before the first frame update
@@ -63,13 +71,35 @@ public class Player : MonoBehaviour
             LastMooveX = Input.GetAxis("Horizontal");
         }
 
+        if (can_Sprint == true)
+        {
+            Player_Sprint();
+        }
 
-        Player_Sprint();
-        Player_Dash();
-        Player_Moovement();
-        Player_Wall_Jump();
-        Player_Double_Jump();
-        Player_Jump();
+        if (can_Dash == true)
+        {
+            Player_Dash();
+        }
+
+        if (can_Moove == true)
+        {
+            Player_Moovement();
+        }
+
+        if (can_Wall_Jump == true)
+        {
+            Player_Wall_Jump();
+        }
+
+        if (can_Double_Jump == true)
+        {
+            Player_Double_Jump();
+        }
+
+        if (can_Jump == true)
+        {
+            Player_Jump();
+        }
 
     }
 
