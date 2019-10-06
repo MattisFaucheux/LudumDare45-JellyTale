@@ -31,16 +31,11 @@ public class Player : MonoBehaviour
 
     private float LastMooveX;
 
-    /*private Gamemanager gm;
-    private Rigidbody playerRB;*/
-
     // Start is called before the first frame update
     void Start()
     {
         speed_copy = speed;
-
-        /*gm = GameObject.FindGameObjectWithTag("GM").GetComponent<Gamemanager>();
-        playerRB = GetComponent<Rigidbody>();*/
+        
     }
 
     // Update is called once per frame
@@ -100,21 +95,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    /*private void FixedUpdate()
-    {
-        if (gm.frozen != false)
-        {
-            playerRB.constraints = RigidbodyConstraints.FreezeRotation;
-            if (Input.anyKey)
-            {
-                gm.frozen = false;
-                playerRB.constraints = RigidbodyConstraints.None;
-            }
-        }
-        else
-            playerRB.constraints = RigidbodyConstraints.None;
-    }*/
 
     void OnCollisionEnter(Collision col)
     {

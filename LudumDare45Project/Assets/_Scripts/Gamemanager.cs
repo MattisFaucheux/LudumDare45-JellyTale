@@ -17,9 +17,6 @@ using UnityEngine.Events;
 
 public class Gamemanager : MonoBehaviour
 {
-    
-    //public bool frozen = false;
-
     /// <summary>
     /// Maximum number of checkpoints
     /// </summary>
@@ -39,45 +36,22 @@ public class Gamemanager : MonoBehaviour
         End,
         GameOver,
     };
-
-    //List<CheckPoint> checkPoints = new List<CheckPoint>();
-    //public static GameObject[] CheckPointList;
+    
 
     //All events triggered by GameManager
     public UnityEvent boulderLaunch;
-    //public UnityEvent freezePlayer;
 
     //Store current game state
     private GameState curState;
 
     //Check player current state
     private bool playerDead = false;
-
-    /*private static Gamemanager instance;
-    public Vector3 lastCPPos;*/
-
-    /*private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(instance);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }*/
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        /*for (int i = 0; i < MAXINDEX; i++)
-        {
-            checkPoints.Add(new CheckPoint (false, transform));
-        }*/
-        //CheckPointList = GameObject.FindGameObjectsWithTag("CheckPoint");
         curState = GameState.MainMenu;
     }
 
@@ -132,10 +106,14 @@ public class Gamemanager : MonoBehaviour
     public void onDeathMessage(GameObject propType)
     {
         Debug.Log("PlayerDead");
-        //curState = GameState.GameOver;
         Debug.Log("Current State = " + curState);
+
+        //Player position takes active checkpoint position
         GameObject.FindGameObjectWithTag("Player").transform.position = CheckPoint.GetActiveCheckPointPosition();
+        //Freeze player rotation
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+        //On player input, unfreeze rotations
         if (Input.anyKey)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
@@ -150,8 +128,6 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log(curState);
         
-        /*frozen = true;
-        return;*/
     }
 
     /// <summary>

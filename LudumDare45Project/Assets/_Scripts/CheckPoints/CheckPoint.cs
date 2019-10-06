@@ -20,8 +20,6 @@ public class CheckPoint : MonoBehaviour
 
     #region Private Variables
 
-    //private Animator thisAnimator;
-
     #endregion
 
     #region Static Variables
@@ -73,12 +71,10 @@ public class CheckPoint : MonoBehaviour
         foreach (GameObject cp in CheckPointsList)
         {
             cp.GetComponent<CheckPoint>().Activated = false;
-            //cp.GetComponent<Animator>().SetBool("Active", false);
         }
 
         // We activated the current checkpoint
         Activated = true;
-        //thisAnimator.SetBool("Active", true);
     }
 
     #endregion
@@ -99,20 +95,4 @@ public class CheckPoint : MonoBehaviour
             ActivateCheckPoint();
         }
     }
-
-    /*private Gamemanager gm;
-
-    private void Start()
-    {
-        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<Gamemanager>();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        // If the player passes through the checkpoint, we activate it
-        if (other.tag == "Player")
-        {
-            gm.lastCPPos = transform.position;
-        }
-    }*/
 }
