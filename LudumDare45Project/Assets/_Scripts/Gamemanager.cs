@@ -167,6 +167,9 @@ public class Gamemanager : MonoBehaviour
         Debug.Log(curState);
     }
 
+    /// <summary>
+    /// Call for new skill unlock
+    /// </summary>
     public void onNewSkill()
     {
         Debug.Log("New Skill unlocked");

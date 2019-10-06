@@ -37,13 +37,6 @@ public class Player : MonoBehaviour
 
     public float is_turn = 1f;
 
-    /*public bool can_Sprint = true; //1
-    public bool can_Dash = true; //2 
-    public bool can_Moove = true; //3 
-    public bool can_Jump = true; //4 
-    public bool can_Double_Jump = true; //5 
-    public bool can_Wall_Jump = true; //6 */
-
     /// <summary>
     /// Dictionaray containing all skills
     /// 1 : move
@@ -59,6 +52,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         speed_copy = speed;
+
+        //Set dictionary values
         playerSkills.Add(1, true);
         playerSkills.Add(2, true);
         playerSkills.Add(3, true);
@@ -277,11 +272,15 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().velocity = velocity;
     }
 
-
+    /// <summary>
+    /// Check state of different skill
+    /// </summary>
     public void CheckSkills()
     {
+        //Go through dictionary
         for(int i = 1; i < playerSkills.Count; i++)
         {
+            //first element found to be false will be passed as true
             if(playerSkills[i] == false)
             {
                 playerSkills[i] = true;
