@@ -56,7 +56,7 @@ public class Gamemanager : MonoBehaviour
     /*private static Gamemanager instance;
     public Vector3 lastCPPos;*/
 
-    private void Awake()
+    /*private void Awake()
     {
         if (instance == null)
         {
@@ -67,7 +67,7 @@ public class Gamemanager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
 
     // Start is called before the first frame update
@@ -132,9 +132,14 @@ public class Gamemanager : MonoBehaviour
     public void onDeathMessage(GameObject propType)
     {
         Debug.Log("PlayerDead");
-        curState = GameState.GameOver;
+        //curState = GameState.GameOver;
         Debug.Log("Current State = " + curState);
-        
+        GameObject.FindGameObjectWithTag("Player").transform.position = CheckPoint.GetActiveCheckPointPosition();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        if (Input.anyKey)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        }
 
     }
 
@@ -144,9 +149,8 @@ public class Gamemanager : MonoBehaviour
     private void PlayerDeath()
     {
         Debug.Log(curState);
-        /*GameObject.FindGameObjectWithTag("Player").transform.position = lastCPPos;
-
-        frozen = true;
+        
+        /*frozen = true;
         return;*/
     }
 
