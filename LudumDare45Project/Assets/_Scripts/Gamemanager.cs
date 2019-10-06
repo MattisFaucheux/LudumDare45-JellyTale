@@ -151,14 +151,17 @@ public class Gamemanager : MonoBehaviour
     public void onNewState()
     {
 
-
+        //Create an array storing all enum indexes
         System.Array a = System.Enum.GetValues(typeof(GameState));
         int i = 0;
+        //Iterate through array to fetch current state index
         for (i = 0; i < a.Length; i++)
         {
+            //Go to next index
             if ((int)a.GetValue(i) == (int)curState)
                 break;
         }
+        //Current state updated to newly fetched state index
         curState = (GameState)a.GetValue(i + 1);
         Debug.Log(curState);
     }
