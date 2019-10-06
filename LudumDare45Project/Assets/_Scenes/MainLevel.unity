@@ -276,6 +276,11 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8433460393022661657, guid: 782a2f304fa46bc4d8183f110a1ab842,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8433460393022661659, guid: 782a2f304fa46bc4d8183f110a1ab842, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 782a2f304fa46bc4d8183f110a1ab842, type: 3}
@@ -7734,6 +7739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7908855ae1991944f9626a2f7ebcb6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 12.13
   move: 0
 --- !u!1001 &5534101128750191857
 PrefabInstance:

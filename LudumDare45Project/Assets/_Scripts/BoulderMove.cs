@@ -13,6 +13,7 @@ public class BoulderMove : MonoBehaviour
     /// <summary>
     /// A modifier to the base movement speed
     /// </summary>
+    [SerializeField]
     float moveSpeed = 5.0f;
 
     //Boulder immobile by default
