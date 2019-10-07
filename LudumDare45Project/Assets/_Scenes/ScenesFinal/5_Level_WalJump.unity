@@ -9391,7 +9391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1439485831
 PrefabInstance:
@@ -12702,10 +12702,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerDialogueBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8475717568207920964, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7989025512218916204, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.32
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7989025512218916204, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
@@ -12760,17 +12765,32 @@ PrefabInstance:
     - target: {fileID: 7989025512218916204, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.9983099
+      value: 8.539486
       objectReference: {fileID: 0}
     - target: {fileID: 7989025512218916204, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.4339
+      value: 9.78009
       objectReference: {fileID: 0}
     - target: {fileID: 7989025512218916204, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.4339
+      value: 9.78009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214862431703591673, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: /activate.Dialogue.Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214862431703591673, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: /activate.wallJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214862431703591673, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: Good Luck
       objectReference: {fileID: 0}
     - target: {fileID: 8745040437508547025, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
@@ -12785,7 +12805,7 @@ PrefabInstance:
     - target: {fileID: 8649577550561119884, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6693655954379772888, guid: d2d123f658db7ce4e9f6170c4bf2bfd9,
         type: 3}
@@ -12809,7 +12829,7 @@ PrefabInstance:
     - target: {fileID: 1843487135983485162, guid: f150a05174ed048419637831a715228d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1843487135983485167, guid: f150a05174ed048419637831a715228d,
         type: 3}
@@ -14779,7 +14799,7 @@ Transform:
   - {fileID: 857759127}
   - {fileID: 1451613121}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2146547408 stripped
 GameObject:
