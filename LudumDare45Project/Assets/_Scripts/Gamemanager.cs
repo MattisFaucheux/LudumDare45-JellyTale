@@ -71,7 +71,7 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case 2:
-                curState = GameState.Zone2;
+                curState = GameState.Zone1;
                 break;
 
             case 3:
@@ -80,10 +80,14 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case 4:
-                curState = GameState.Zone4;
+                curState = GameState.Zone3;
                 break;
 
             case 5:
+                curState = GameState.Zone4;
+                break;
+
+            case 6:
                 curState = GameState.End;
                 break;
         }
@@ -103,24 +107,25 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone2:
-                
+                onNewSkill();
                 break;
 
             case GameState.Zone3:
                 Debug.Log("State3 active");
+                onNewSkill();
                 BoulderStart();
                 break;
 
             case GameState.Zone4:
-
+                onNewSkill();
                 break;
 
             case GameState.Zone5:
-
+                onNewSkill();
                 break;
 
             case GameState.Zone6:
-
+                onNewSkill();
                 break;
 
             case GameState.GameOver:
