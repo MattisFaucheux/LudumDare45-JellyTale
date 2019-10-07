@@ -4,11 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/_Scenes/BoulderTestScene.unity
-    guid: 5cd46cda47c2b5e479378083d389c929
-  - enabled: 1
-    path: Assets/_Scenes/EnemyTest.unity
-    guid: 774c77004192c7747a3969931fd62937
+  m_Scenes: []
   m_configObjects: {}
