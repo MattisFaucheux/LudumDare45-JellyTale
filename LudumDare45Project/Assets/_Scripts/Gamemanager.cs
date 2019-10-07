@@ -72,20 +72,20 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case 2:
-                curState = GameState.Zone1;
+                curState = GameState.Zone2;
                 break;
 
             case 3:
                 //Requires zone trigger setup to maintain cinematic effect
-                curState = GameState.Zone2;
-                break;
-
-            case 4:
                 curState = GameState.Zone3;
                 break;
 
-            case 5:
+            case 4:
                 curState = GameState.Zone4;
+                break;
+
+            case 5:
+                curState = GameState.Zone5;
                 break;
 
             case 6:
