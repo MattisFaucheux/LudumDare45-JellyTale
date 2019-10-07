@@ -288,6 +288,7 @@ public class Player : MonoBehaviour
                 {
                     transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
+
             }
         }
     }
@@ -328,7 +329,6 @@ public class Player : MonoBehaviour
             is_jumping = true;
             GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed, 0));
         }
-
     }
 
     void Player_Double_Jump()
