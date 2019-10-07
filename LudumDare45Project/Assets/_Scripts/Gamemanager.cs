@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 /*
@@ -41,6 +42,8 @@ public class Gamemanager : MonoBehaviour
     public UnityEvent boulderLaunch;
     public UnityEvent newSkill;
 
+    public int x;
+
     //Store current game state
     private GameState curState;
 
@@ -49,14 +52,42 @@ public class Gamemanager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+        x = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        curState = GameState.MainMenu;
-}
+        //Switch between game states and execute relative methods
+        switch (x)
+        {
+            case 0:
+                curState = GameState.MainMenu;
+                break;
+
+            case 1:
+                curState = GameState.Zone1;
+                break;
+
+            case 2:
+                curState = GameState.Zone2;
+                break;
+
+            case 3:
+                //Requires zone trigger setup to maintain cinematic effect
+                curState = GameState.Zone2;
+                break;
+
+            case 4:
+                curState = GameState.Zone4;
+                break;
+
+            case 5:
+                curState = GameState.End;
+                break;
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -68,7 +99,7 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone1:
-
+                onNewSkill();
                 break;
 
             case GameState.Zone2:
