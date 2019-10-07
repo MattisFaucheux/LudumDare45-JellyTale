@@ -3789,6 +3789,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2621562172417452600, guid: ed34bc2396879f341b060c5d7c465a0c,
         type: 3}
+      propertyPath: boulderLaunch.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621562172417452600, guid: ed34bc2396879f341b060c5d7c465a0c,
+        type: 3}
       propertyPath: newSkill.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -6309,12 +6314,12 @@ PrefabInstance:
     - target: {fileID: 1843487135983485167, guid: f150a05174ed048419637831a715228d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 103.8
+      value: 172.1
       objectReference: {fileID: 0}
     - target: {fileID: 1843487135983485167, guid: f150a05174ed048419637831a715228d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -396
+      value: -88.7
       objectReference: {fileID: 0}
     - target: {fileID: 1843487135983485167, guid: f150a05174ed048419637831a715228d,
         type: 3}
@@ -6360,6 +6365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843487135983485167, guid: f150a05174ed048419637831a715228d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.9014
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f150a05174ed048419637831a715228d, type: 3}

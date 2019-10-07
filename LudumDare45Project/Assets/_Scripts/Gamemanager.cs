@@ -43,6 +43,7 @@ public class Gamemanager : MonoBehaviour
     public UnityEvent newSkill;
 
     public int x;
+    private bool skillUnlocked = false;
 
     //Store current game state
     private GameState curState;
@@ -103,29 +104,47 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone1:
-                onNewSkill();
+                if(skillUnlocked == false)
+                {
+                    onNewSkill();
+                }
                 break;
 
             case GameState.Zone2:
-                onNewSkill();
+                if (skillUnlocked == false)
+                {
+                    onNewSkill();
+                }
                 break;
 
             case GameState.Zone3:
                 Debug.Log("State3 active");
-                onNewSkill();
+                if (skillUnlocked == false)
+                {
+                    onNewSkill();
+                }
                 BoulderStart();
                 break;
 
             case GameState.Zone4:
-                onNewSkill();
+                if (skillUnlocked == false)
+                {
+                    onNewSkill();
+                }
                 break;
 
             case GameState.Zone5:
-                onNewSkill();
+                if (skillUnlocked == false)
+                {
+                    onNewSkill();
+                }
                 break;
 
             case GameState.Zone6:
-                onNewSkill();
+                if (skillUnlocked == false)
+                {
+                    onNewSkill();
+                }
                 break;
 
             case GameState.GameOver:
@@ -219,5 +238,6 @@ public class Gamemanager : MonoBehaviour
     {
         Debug.Log("New Skill unlocked");
         newSkill.Invoke();
+        skillUnlocked = true;
     }
 }
