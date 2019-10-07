@@ -54,13 +54,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5805055846832619616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402718e5c29df8d488a7445182b9dea3, type: 3}
+  m_Script: {fileID: 11500000, guid: fe68207e041fdd242bd3b9cabd6acf57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   newState:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2621562172417452600, guid: ed34bc2396879f341b060c5d7c465a0c,
+          type: 3}
         m_MethodName: onNewState
         m_Mode: 1
         m_Arguments:

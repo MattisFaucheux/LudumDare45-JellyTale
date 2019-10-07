@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject hand;
+
     public float time_new_sentence = 3f;
 
 
@@ -72,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+        hand.SetActive(false);
     }
 
 }

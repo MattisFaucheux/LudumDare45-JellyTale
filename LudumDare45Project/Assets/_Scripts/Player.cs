@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -68,25 +69,67 @@ public class Player : MonoBehaviour
 
     bool scaling = false;
 
+    private int x = 0;
+
+    private void Awake()
+    {
+        //DontDestroyOnLoad(gameObject);
+        x = SceneManager.GetActiveScene().buildIndex;
+
+        //Set dictionary values
+        playerSkills.Add(1, false);
+        playerSkills.Add(2, false);
+        playerSkills.Add(3, false);
+        playerSkills.Add(4, false);
+        playerSkills.Add(5, false);
+        playerSkills.Add(6, false);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         speed_copy = speed;
 
-        //Set dictionary values
-        playerSkills.Add(1, true);
-        playerSkills.Add(2, true);
-        playerSkills.Add(3, true);
-        playerSkills.Add(4, true);
-        playerSkills.Add(5, true);
-        playerSkills.Add(6, true);
+        switch (x)
+        {
+            case 0:
+
+                break;
+
+            case 1:
+                shake_player = false;
+                playerSkills[1] = true;
+                break;
+
+            case 2:
+                shake_player = false;
+                playerSkills[1] = true;
+                playerSkills[2] = true;
+                break;
+
+            case 3:
+                shake_player = false;
+                playerSkills[1] = true;
+                playerSkills[2] = true;
+                playerSkills[3] = true;
+                break;
+
+            case 4:
+                shake_player = false;
+                playerSkills[1] = true;
+                playerSkills[2] = true;
+                playerSkills[3] = true;
+                playerSkills[4] = true;
+                break;
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(playerSkills[1]);
 
         if ((is_jumping == true || touch_ground == false)  && playerSkills[1] == true)
         {
@@ -245,6 +288,7 @@ public class Player : MonoBehaviour
                 {
                     transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
+
             }
         }
     }
@@ -285,7 +329,6 @@ public class Player : MonoBehaviour
             is_jumping = true;
             GetComponent<Rigidbody>().AddForce(new Vector3(0, jump_speed, 0));
         }
-
     }
 
     void Player_Double_Jump()
