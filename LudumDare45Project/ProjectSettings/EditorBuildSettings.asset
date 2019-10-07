@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/ScenesFinal/2_Level_MainLevel.unity
+    guid: 768722821502c7e4ba8ac2c47e7e373a
+  - enabled: 1
+    path: Assets/_Scenes/ScenesFinal/3_Level_Platformer.unity
+    guid: 61f9ca0f59261304f91fbe7554143109
+  - enabled: 1
+    path: Assets/_Scenes/ScenesFinal/4_Level_Boulder.unity
+    guid: a286bfa47bc48f44cb9a8db5a1e83cce
+  - enabled: 1
+    path: Assets/_Scenes/ScenesFinal/5_Level_WalJump.unity
+    guid: e9bbf8e5e32619a46b8d35f01eb68d66
   m_configObjects: {}

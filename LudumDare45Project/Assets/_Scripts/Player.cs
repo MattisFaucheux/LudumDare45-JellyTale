@@ -93,29 +93,29 @@ public class Player : MonoBehaviour
 
         switch (x)
         {
-            case 0:
-
-                break;
-
             case 1:
-                shake_player = false;
-                playerSkills[1] = true;
+
                 break;
 
             case 2:
                 shake_player = false;
                 playerSkills[1] = true;
-                playerSkills[2] = true;
                 break;
 
             case 3:
                 shake_player = false;
                 playerSkills[1] = true;
                 playerSkills[2] = true;
-                playerSkills[3] = true;
                 break;
 
             case 4:
+                shake_player = false;
+                playerSkills[1] = true;
+                playerSkills[2] = true;
+                playerSkills[3] = true;
+                break;
+
+            case 5:
                 shake_player = false;
                 playerSkills[1] = true;
                 playerSkills[2] = true;
