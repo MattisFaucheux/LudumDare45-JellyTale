@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
 
         switch (x)
         {
-            case 1:
+            case 0:
 
                 break;
 
@@ -108,19 +108,20 @@ public class Player : MonoBehaviour
                 playerSkills[2] = true;
                 break;
 
+            //case 4:
+            //    shake_player = false;
+            //    playerSkills[1] = true;
+            //    playerSkills[2] = true;
+            //    playerSkills[3] = true;
+            //    break;
+
             case 4:
                 shake_player = false;
                 playerSkills[1] = true;
                 playerSkills[2] = true;
                 playerSkills[3] = true;
-                break;
-
-            case 5:
-                shake_player = false;
-                playerSkills[1] = true;
-                playerSkills[2] = true;
-                playerSkills[3] = true;
                 playerSkills[4] = true;
+                playerSkills[5] = true;
                 break;
         }
 
@@ -129,7 +130,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerSkills[1]);
+
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+
 
         if ((is_jumping == true || touch_ground == false)  && playerSkills[1] == true)
         {
@@ -176,7 +184,7 @@ public class Player : MonoBehaviour
             Player_Sprint();
         }
 
-        if (playerSkills[6] == true && shake_player == false && cooldown_dash == true && Input.GetAxis("Horizontal") != 0)
+        if (playerSkills[3] == true && shake_player == false && cooldown_dash == true && Input.GetAxis("Horizontal") != 0)
         {
             Player_Dash();
         }
@@ -418,7 +426,6 @@ public class Player : MonoBehaviour
             if(playerSkills[i] == false)
             {
                 playerSkills[i] = true;
-                Debug.Log(playerSkills[i]);
                 break;
             }
         }

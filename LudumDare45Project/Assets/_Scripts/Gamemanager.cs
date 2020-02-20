@@ -118,7 +118,6 @@ public class Gamemanager : MonoBehaviour
                 break;
 
             case GameState.Zone3:
-                Debug.Log("State3 active");
                 if (skillUnlocked == false)
                 {
                     onNewSkill();
@@ -167,16 +166,19 @@ public class Gamemanager : MonoBehaviour
         Debug.Log("PlayerDead");
         Debug.Log("Current State = " + curState);
 
-        //Player position takes active checkpoint position
-        GameObject.FindGameObjectWithTag("Player").transform.position = CheckPoint.GetActiveCheckPointPosition();
-        //Freeze player rotation
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    
 
-        //On player input, unfreeze rotations
-        if (Input.anyKey)
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        }
+    ////Player position takes active checkpoint position
+    //GameObject.FindGameObjectWithTag("Player").transform.position = CheckPoint.GetActiveCheckPointPosition();
+    //    //Freeze player rotation
+    //    GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+    //    //On player input, unfreeze rotations
+    //    if (Input.anyKey)
+    //    {
+    //        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    //    }
 
     }
 
@@ -207,7 +209,6 @@ public class Gamemanager : MonoBehaviour
     /// </summary>
     void BoulderStart()
     {
-        Debug.Log("Boulder rolling");
         boulderLaunch.Invoke();
         GameObject boulder = GameObject.FindGameObjectWithTag("Boulder");
         boulder.GetComponent<Rigidbody>().useGravity = enabled;
