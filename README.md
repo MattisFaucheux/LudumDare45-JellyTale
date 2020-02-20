@@ -5,6 +5,8 @@ Theme: Start with nothing
 GAME FIX: https://mattisfaucheux.itch.io/jellytale
 Page LudumDare: https://ldjam.com/events/ludum-dare/45/jelly-tale
 
+Made with Unity
+
 GAME BY:
 Valentin Denat - Designer
 Pierre Rencruel - Designer
