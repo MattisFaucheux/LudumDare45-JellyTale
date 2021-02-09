@@ -20,6 +20,6 @@ Matis Faucheux - Programmeur
 
 
 Je me suis occupé de la programmation du personnage principalement (ses mouvements et actions) ainsi que des dialogues et de la caméra.
-J'ai aussi fix quelques trucs dont je ne m'étais pas occupé a la base (comme le changement de state ou le reload de la scene lort de la mort du player).
+J'ai aussi fix quelques trucs dont je ne m'étais pas occupé a la base (comme le changement de state ou le reload de la scene lors de la mort du player).
 
 
